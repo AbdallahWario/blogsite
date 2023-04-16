@@ -13,6 +13,9 @@ import RegisterPage from './pages/Register/Register';
 import About from './pages/About';
 import Posts from './pages/Posts/Posts';
 import Contact from './pages/Contact';
+import CreatePost from './pages/createPost';
+import { UserContextProvider } from './UserContext';
+
 
 const router = createBrowserRouter([
   {
@@ -22,6 +25,10 @@ const router = createBrowserRouter([
       {
         path:'/',
         element:<HomePage/>
+      },
+      {
+        path:'/create',
+        element:<CreatePost/>
       },
       {
         path:'/Home',
@@ -55,6 +62,9 @@ const router = createBrowserRouter([
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
+    <UserContextProvider>
     <RouterProvider router={router}/>
+
+    </UserContextProvider>
   </React.StrictMode>,
 )

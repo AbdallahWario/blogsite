@@ -7,11 +7,16 @@ const RegisterPage = () => {
 
   const register=async(e)=>{
     e.preventDefault();
-await fetch('http://localhost:4000/register',{
+const response = await fetch('http://localhost:4000/register',{
   method:'POST',
   body:JSON.stringify({username,email,password}),
   headers:{'Content-Type':'application/json'},
 })
+if(response.status===200){
+  alert('registration succesful,proceed to login')
+}else{
+  alert('something went wrong')
+}
 
   }
 
@@ -51,6 +56,7 @@ await fetch('http://localhost:4000/register',{
           </div>
           <div className='flex-col  '>
             <input id="email-address" 
+            value={email}
             name="email" type="email"
              autocomplete="email" required 
              className="relative outline-none 
@@ -75,7 +81,8 @@ await fetch('http://localhost:4000/register',{
                
                focus:ring-indigo-600 sm:text-sm sm:leading-6" 
                placeholder="Password" 
-            onChange={e=>setPassword(e.target.vale)}
+               value={password}
+            onChange={e=>setPassword(e.target.value)}
                
                />
           </div>

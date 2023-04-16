@@ -1,56 +1,54 @@
-import React from 'react'
+import React, { useContext, useState } from 'react'
+import { Navigate } from 'react-router-dom';
 
 const LoginPage = () => {
+  const [username,setUsername] = useState('');
+  const [password,setPassword] = useState('');
+  const [redirect,setRedirect] = useState(false);
+  // const {setUserInfo} = useContext(UserContext);
+
+  async function login(ev) {
+    ev.preventDefault();
+    const response = await fetch('http://localhost:4000/login', {
+      method: 'POST',
+      body: JSON.stringify({username, password}),
+      headers: {'Content-Type':'application/json'},
+      credentials: 'include',
+    });
+    if (response.ok) {
+      // response.json().then(userInfo => {
+      //   setUserInfo(userInfo);
+      //   setRedirect(true);
+      // });
+      setRedirect(true)
+    } else {
+      alert('wrong credentials');
+    }
+  }
+
+  if (redirect) {
+    return <Navigate to={'/'} />
+  }
+
   return (
-//     <!--
-//     This example requires some changes to your config:
-    
-//     ```
-//     // tailwind.config.js
-//     module.exports = {
-//       // ...
-//       plugins: [
-//         // ...
-//         require('@tailwindcss/forms'),
-//       ],
-//     }
-//     ```
-//   -->
-//   <!--
-//     This example requires updating your template:
-  
-//     ```
-//     <html class="h-full bg-gray-50">
-//     <body class="h-full">
-//     ```
-//   -->
   <div class="flex min-h-full items-center  justify-center  px-4 py-12 sm:px-6 lg:px-8">
     <div class="w-full max-w-md space-y-8  ">
       <div>
         <h2 class="mt-6 text-center text-3xl font-bold tracking-tight text-gray-900">Sign in to your account</h2>
        
       </div>
-      <form class="mt-8 space-y-6" action="#" method="POST">
+      <form class="mt-8 space-y-6" action="#" onSubmit={login}>
         <input type="hidden" name="remember" value="true" />
         <div className="-space-y-px rounded-md   flex-col shadow-sm">
           <div className='flex-col  '>
-            <input id="email-address" name="email" type="email" autocomplete="email" required className="relative outline-none my-2 block w-full px-2 rounded-md border-0 py-1.5 text-gray-900 ring-1 ring-inset mb-4 ring-gray-300 placeholder:text-gray-400 focus:z-10 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" placeholder="Email address" />
+            <input id="user-name" value={username} onChange={e=>setUsername(e.target.value)} name="username" type="text" autocomplete="username" required className="relative outline-none my-2 block w-full px-2 rounded-md border-0 py-1.5 text-gray-900 ring-1 ring-inset mb-4 ring-gray-300 placeholder:text-gray-400 focus:z-10 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" placeholder="username" />
           </div>
           <div>
-            <input id="password" name="password" type="password" autocomplete="current-password" required className="relative  outline-none px-2  w-full rounded-md border-0 py-1.5 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:z-10 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" placeholder="Password" />
+            <input id="password" value={password} onChange={e=>setPassword(e.target.value)}  name="password" type="password" autocomplete="current-password" required className="relative  outline-none px-2  w-full rounded-md border-0 py-1.5 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:z-10 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" placeholder="Password" />
           </div>
         </div>
   
-        <div class="flex items-center justify-between">
-          <div class="flex items-center">
-            <input id="remember-me" name="remember-me" type="checkbox" class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-600" />
-            <label for="remember-me" class="ml-2 block text-sm text-gray-900">Remember me</label>
-          </div>
-  
-          <div class="text-sm">
-            <a href="#" class="font-medium text-indigo-600 hover:text-indigo-500">Forgot your password?</a>
-          </div>
-        </div>
+        
   
         <div>
           <button type="submit" class="group relative flex w-full justify-center rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">

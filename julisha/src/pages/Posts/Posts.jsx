@@ -3,6 +3,8 @@ import Post from '../../components/Post'
 
 const Posts = () => {
   return (
+
+    
     <div>
         
         <Post/>
