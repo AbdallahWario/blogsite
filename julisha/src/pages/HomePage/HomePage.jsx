@@ -48,9 +48,9 @@ const HomePage = () => {
 
 
     
-        <div  className='my-24'>
+        <div  className='my-24 items-center justify-center w-full'>
           <p  id='services' className='font-bold text-2xl'>What we do</p>
-          <div className="  flex flex-wrap items-center justify-center gap-4 px-2 py-4">
+          <div className="flex flex-wrap items-center lg:items-center lg:justify-center justify-center gap-4 px-2 py-4 md:w-full md:flex-wrap ">
          
           <Desc_Cards
           service={"Media Relations"} 
