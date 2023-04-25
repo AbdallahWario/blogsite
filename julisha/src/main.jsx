@@ -15,6 +15,7 @@ import Posts from './pages/Posts/Posts';
 import Contact from './pages/Contact';
 import CreatePost from './pages/createPost';
 import { UserContextProvider } from './UserContext';
+import PostPage from './pages/PostPage';
 
 
 const router = createBrowserRouter([
@@ -53,6 +54,10 @@ const router = createBrowserRouter([
       {
         path:'/Contact-Us',
         element:<Contact/>
+      },
+      {
+        path:'/post/:id',
+        element:<PostPage/>
       }
      
      
