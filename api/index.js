@@ -20,7 +20,10 @@ app.use('/uploads', express.static(__dirname + '/uploads'));
 app.use(cookieParser());
 
 
+
 app.use(cors({credentials:true,origin:'http://localhost:5173'}));
+app.use(cors({credentials:true,origin:'https://blogsite-rosy.vercel.app'}));
+
 
 app.use(express.json())
 mongoose.connect('mongodb+srv://wario:2PifGoDdOdpztEar@cluster0.6h7pzbf.mongodb.net/?retryWrites=true&w=majority', {
