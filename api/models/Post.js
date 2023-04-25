@@ -1,4 +1,6 @@
 const mongoose = require('mongoose');
+const {Schema,model} = mongoose;
+
 
 // Define the schema for the Post model
 const postSchema = new mongoose.Schema({
@@ -17,6 +19,8 @@ const postSchema = new mongoose.Schema({
   cover:{
     type:String
   },
+  author:{type:Schema.Types.ObjectId, ref:'User'},
+
 
   createdAt: {
     type: Date,
