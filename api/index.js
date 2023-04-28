@@ -1,14 +1,16 @@
 const express = require('express')
 const cors = require('cors')
 const app=express()
-const User = require('./models/user')
+// const User = require('./models/user')
 const mongoose = require('mongoose');
-const Post = require('./models/Post');
+// const Post = require('models/Post');
 const multer = require('multer');
 const fs = require('fs');
 const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
 const cookieParser = require('cookie-parser');
+import Post from 'models/Post';
+import User from 'models/user';
 
 
 const uploadMiddleware = multer({ dest: 'uploads/' });
@@ -21,7 +23,6 @@ app.use(cookieParser());
 
 
 
-app.use(cors({credentials:true,origin:'http://localhost:5173'}));
 app.use(cors({credentials:true,origin:'https://blogsite-rosy.vercel.app'}));
 
 
