@@ -19,9 +19,6 @@ const secret = 'asdfe45we45w345wegw345werjktjwertkj';
 app.use('/uploads', express.static(__dirname + '/uploads'));
 app.use(cookieParser());
 
-
-
-app.use(cors({credentials:true,origin:'http://localhost:5173'}));
 app.use(cors({credentials:true,origin:'https://blogsite-rosy.vercel.app'}));
 
 
