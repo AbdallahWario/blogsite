@@ -136,7 +136,7 @@ app.put('/post',uploadMiddleware.single('file'), async (req,res) => {
 });
 
 app.get("/", (req, res) => {
-  res.send("This server is Connected");
+  res.send("This server is Connected !");
 });
 
 app.get('/post', async (req,res) => {
