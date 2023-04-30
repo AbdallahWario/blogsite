@@ -1,16 +1,16 @@
 const express = require('express')
 const cors = require('cors')
 const app=express()
-// const User = require('./models/user')
+const User = require('./models/user')
 const mongoose = require('mongoose');
-// const Post = require('models/Post');
+const Post = require('./models/Post');
 const multer = require('multer');
 const fs = require('fs');
 const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
 const cookieParser = require('cookie-parser');
-import Post from 'models/Post';
-import User from 'models/user';
+// import Post from 'models/Post';
+// import User from 'models/user';
 
 
 const uploadMiddleware = multer({ dest: 'uploads/' });
@@ -21,11 +21,8 @@ const secret = 'asdfe45we45w345wegw345werjktjwertkj';
 app.use('/uploads', express.static(__dirname + '/uploads'));
 app.use(cookieParser());
 
-<<<<<<< HEAD
 
 
-=======
->>>>>>> b6223b419f9b0a41472b45ddf5c93a1397409842
 app.use(cors({credentials:true,origin:'https://blogsite-rosy.vercel.app'}));
 
 
