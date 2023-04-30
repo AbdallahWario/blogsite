@@ -22,7 +22,7 @@ const CreatePost = () => {
  
 
 
-    const response = await fetch('http://localhost:4000/createPost', {
+    const response = await fetch('https://blogsite-px63.vercel.app/createPost', {
         method: 'POST',
         body: data,
         credentials: 'include',
