@@ -22,7 +22,7 @@ const CreatePost = () => {
  
 
 
-    const response = await fetch('https://blogsite-px63.vercel.app/createPost', {
+    const response = await fetch('https://julisha.onrender.com/createPost', {
         method: 'POST',
         body: data,
         credentials: 'include',

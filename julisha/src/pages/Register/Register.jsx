@@ -7,7 +7,7 @@ const RegisterPage = () => {
 
   const register=async(e)=>{
     e.preventDefault();
-const response = await fetch('https://blogsite-px63.vercel.app/register',{
+const response = await fetch('https://julisha.onrender.com/register',{
   method:'POST',
   body:JSON.stringify({username,email,password}),
   headers:{'Content-Type':'application/json'},

@@ -5,7 +5,7 @@ export default function Posts() {
   const [posts, setPosts] = useState([]);
 
   useEffect(() => {
-    fetch('https://blogsite-px63.vercel.app/post')
+    fetch('https://julisha.onrender.com/post')
       .then(response => response.json())
       .then(posts => setPosts(posts));
   }, []);

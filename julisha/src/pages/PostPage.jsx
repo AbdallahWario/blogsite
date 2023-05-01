@@ -10,7 +10,7 @@ export default function PostPage() {
   const { id } = useParams();
 
   useEffect(() => {
-    fetch(`https://blogsite-px63.vercel.app/${id}`)
+    fetch(`https://julisha.onrender.com/${id}`)
       .then(response => response.json())
       .then(postInfo => setPostInfo(postInfo))
       .catch(error => console.error(error));
