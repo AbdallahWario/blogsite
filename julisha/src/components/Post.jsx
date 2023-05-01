@@ -6,7 +6,7 @@ const Post = ({ _id, title, summary, cover, content, createdAt, author }) => {
   return (
     <div className="flex flex-col bg-white rounded-lg shadow-lg overflow-hidden">
       <Link to={`/post/${_id}`}>
-        <img src={`http://localhost:4000/${cover}`} alt="" className="w-full h-64 object-cover" />
+        <img src={`https://julisha.onrender.com/${cover}`} alt="" className="w-full h-64 object-cover" />
       </Link>
       <div className="px-6 py-4">
         <div className="mb-2">
