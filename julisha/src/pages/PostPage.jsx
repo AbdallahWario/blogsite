@@ -48,7 +48,7 @@ export default function PostPage() {
 
       <div className="mb-4">
         <img
-          src={`http://localhost:4000/${postInfo.cover}`}
+          src={`https://julisha.onrender.com/${postInfo.cover}`}
           alt={postInfo.title}
           className="w-full h-auto"
         />
