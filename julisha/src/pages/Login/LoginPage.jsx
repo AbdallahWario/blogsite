@@ -16,10 +16,10 @@ const LoginPage = () => {
       credentials: 'include',
     });
     if (response.ok) {
-      // response.json().then(userInfo => {
-      //   setUserInfo(userInfo);
-      //   setRedirect(true);
-      // });
+      response.json().then(userInfo => {
+        setUserInfo(userInfo);
+        setRedirect(true);
+      });
       setRedirect(true)
     } else {
       alert('wrong credentials');
