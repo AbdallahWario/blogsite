@@ -5,7 +5,7 @@ const LoginPage = () => {
   const [username,setUsername] = useState('');
   const [password,setPassword] = useState('');
   const [redirect,setRedirect] = useState(false);
-  // const {setUserInfo} = useContext(UserContext);
+  const {setUserInfo} = useContext(UserContext);
 
   async function login(ev) {
     ev.preventDefault();
