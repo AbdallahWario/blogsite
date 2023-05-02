@@ -16,6 +16,7 @@ import Contact from './pages/Contact';
 import CreatePost from './pages/createPost';
 import { UserContextProvider } from './UserContext';
 import PostPage from './pages/PostPage';
+import EditPost from './pages/EditPage';
 
 
 const router = createBrowserRouter([
@@ -38,6 +39,10 @@ const router = createBrowserRouter([
       {
         path:'/login',
         element:<LoginPage/>
+      },
+      {
+        path:'/edit/:id',
+        element:<EditPost/>
       },
       {
         path:'/register',
