@@ -22,8 +22,8 @@ app.use('/uploads', express.static(__dirname + '/uploads'));
 app.use(cookieParser());
 
 
-
-app.use(cors({credentials:true,origin:'https://blogsite-rosy.vercel.app'}));
+app.use(cors())
+// app.use(cors({credentials:true,origin:'https://blogsite-rosy.vercel.app'}));
 
 
 app.use(express.json())
