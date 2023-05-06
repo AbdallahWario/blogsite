@@ -9,9 +9,10 @@ const fs = require('fs');
 const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
 const cookieParser = require('cookie-parser');
+const dotenv = require('dotenv')
 // import Post from 'models/Post';
 // import User from 'models/user';
-
+dotenv.config()
 
 const uploadMiddleware = multer({ dest: 'uploads/' });
 
@@ -154,7 +155,10 @@ app.get('/post/:id', async (req, res) => {
   res.json(postDoc);
 })
 
-
-app.listen(4000,() => {
-    console.log('Server is running on http://localhost:4000');
+if(process.env.API_PORT){
+  app.listen(process.env.API_PORT,() => {
+    console.log(`Server  is running on PORT ${process.env.API_PORT}`);
   })
+}
+
+ module.exports = app;
