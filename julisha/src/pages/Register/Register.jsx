@@ -1,4 +1,6 @@
 import React, { useState } from 'react'
+const apiUrl = import.meta.env.VITE_API_URL;
+
 
 const RegisterPage = () => {
   const [username,setUsername] = useState('')
@@ -7,7 +9,7 @@ const RegisterPage = () => {
 
   const register=async(e)=>{
     e.preventDefault();
-const response = await fetch('https://julisha.onrender.com/register',{
+const response = await fetch(`${apiUrl}/register`,{
   method:'POST',
   body:JSON.stringify({username,email,password}),
   headers:{'Content-Type':'application/json'},

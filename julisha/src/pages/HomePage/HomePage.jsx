@@ -2,6 +2,7 @@ import React, { useContext, useEffect } from 'react'
 import Desc_Cards from '../../components/Desc_Cards'
 import { UserContext } from '../../UserContext'
 import Posts from '../Posts/Posts';
+const apiUrl = import.meta.env.VITE_API_URL;
 
 
 
@@ -9,7 +10,7 @@ const HomePage = () => {
   const {userInfo,setUserInfo} = useContext(UserContext);
   
   useEffect(() => {
-    fetch('https://julisha.onrender.com/profile', {
+    fetch(`${apiUrl}/profile`, {
       credentials: 'include',
     }).then(response => {
       response.json().then(userInfo => {
@@ -31,11 +32,11 @@ const HomePage = () => {
       </>
     )}{!username &&(
 
-      <div id='about' className="md:flex-col md:gap-2 md:py-4 my-4 w-full md:w-3/4">
-  <div className=''>
+      <div id='about' className="md:flex-col  md:gap-2 md:py-4 my-4 w-full md:w-3/4">
+         <div className=''>
     <h1 className='text-2xl font-semibold m-2 md:flex md:m-0'>We are JulishaMedia</h1>
   </div>
-  <div className='flex-col  md:flex-row mb-4 justify-center md:flex py-2 flex-row lg:flex-row h-[400px]'>
+  <div className=' md:flex-row mb-4 justify-center md:flex py-2 flex-row lg:flex-row h-[400px]'>
     <div className='flex md:flex items-center mt-4 md:w-1/2'>
       <p>
        Welcome to our PR (public relations) company! We specialize in managing and improving the reputation of individuals, organizations, and brands. Our team uses various communication strategies and tactics to create and maintain a positive public image for our clients. Our services include media relations, event planning, branding and messaging, crisis management, and more.
@@ -48,7 +49,7 @@ const HomePage = () => {
 
 
     
-        <div  className='my-24 items-center justify-center w-full'>
+        <div  className='my-24  flex-col items-center justify-center w-full'>
           <p  id='services' className='font-bold text-2xl'>What we do</p>
           <div className="flex flex-wrap items-center lg:items-center lg:justify-center justify-center gap-4 px-2 py-4 md:w-full md:flex-wrap ">
          

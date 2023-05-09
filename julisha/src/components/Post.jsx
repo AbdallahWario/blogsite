@@ -1,12 +1,14 @@
 import React from 'react';
 import { formatISO9075 } from "date-fns";
 import { Link } from 'react-router-dom';
+const apiUrl = import.meta.env.VITE_API_URL;
+
 
 const Post = ({ _id, title, summary, cover, content, createdAt, author }) => {
   return (
     <div className="flex flex-col bg-white rounded-lg shadow-lg overflow-hidden">
       <Link to={`/post/${_id}`}>
-        <img src={`https://julisha.onrender.com/${cover}`} alt="" className="w-full h-64 object-cover" />
+        <img src={`${apiUrl}/${cover}`} alt="" className="w-full h-64 object-cover" />
       </Link>
       <div className="px-6 py-4">
         <div className="mb-2">

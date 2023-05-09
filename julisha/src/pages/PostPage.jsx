@@ -3,14 +3,16 @@ import { useParams } from "react-router-dom";
 import { formatISO9075 } from "date-fns";
 import { UserContext } from "../UserContext";
 import { Link } from 'react-router-dom';
+const apiUrl = import.meta.env.VITE_API_URL;
 
 export default function PostPage() {
   const [postInfo, setPostInfo] = useState(null);
   const { userInfo } = useContext(UserContext);
   const { id } = useParams();
+  
 
   useEffect(() => {
-    fetch(`https://julisha.onrender.com/post/${id}`)
+    fetch(`${apiUrl}/post/${id}`)
       .then(response => response.json())
       .then(postInfo => setPostInfo(postInfo))
       .catch(error => console.error(error));
@@ -20,7 +22,7 @@ export default function PostPage() {
     return null;
   }
 
-  const isAuthor = userInfo.id === postInfo.author._id;
+  const isAuthor = userInfo?.id === postInfo.author?._id;
 
   return (
     <div className="max-w-2xl mx-auto">
@@ -31,7 +33,7 @@ export default function PostPage() {
         </time>
         <span>|</span>
         <div className="ml-2">
-          by {postInfo.author.username}
+          by {postInfo.author?.username}
         </div>
       </div>
 
@@ -48,7 +50,7 @@ export default function PostPage() {
 
       <div className="mb-4">
         <img
-          src={`https://julisha.onrender.com/${postInfo.cover}`}
+          src={`${apiUrl}/${postInfo.cover}`}
           alt={postInfo.title}
           className="w-full h-auto"
         />

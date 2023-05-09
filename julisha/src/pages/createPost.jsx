@@ -2,6 +2,8 @@ import React, { useState } from 'react'
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 import { Navigate } from 'react-router-dom';
+const apiUrl = import.meta.env.VITE_API_URL;
+
 
 const CreatePost = () => {
     const[title,setTitle]=useState('')
@@ -22,7 +24,7 @@ const CreatePost = () => {
  
 
 
-    const response = await fetch('https://julisha.onrender.com/createPost', {
+    const response = await fetch(`${apiUrl}/createPost`, {
         method: 'POST',
         body: data,
         credentials: 'include',
@@ -35,6 +37,7 @@ const CreatePost = () => {
     if (redirect) {
         return <Navigate to={'/'} />
       }
+
   return (
     <div>
         <div>

@@ -22,9 +22,18 @@ const secret = 'asdfe45we45w345wegw345werjktjwertkj';
 app.use('/uploads', express.static(__dirname + '/uploads'));
 app.use(cookieParser());
 
+// Allow requests from any origin
+app.use((req, res, next) => {
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
+  next();
+});
+
 
 
 app.use(cors({credentials:true,origin:'https://blogsite-rosy.vercel.app'}));
+
+// app.use(cors({credentials:true,origin:'http://localhost:5173'}));
 
 
 app.use(express.json())
@@ -105,36 +114,36 @@ app.post('/register', async(req,res)=>{
     
     });
 
-app.put('/post',uploadMiddleware.single('file'), async (req,res) => {
-  let newPath = null;
-  if (req.file) {
-    const {originalname,path} = req.file;
-    const parts = originalname.split('.');
-    const ext = parts[parts.length - 1];
-    newPath = path+'.'+ext;
-    fs.renameSync(path, newPath);
-  }
-
-  const {token} = req.cookies;
-  jwt.verify(token, secret, {}, async (err,info) => {
-    if (err) throw err;
-    const {id,title,summary,content} = req.body;
-    const postDoc = await Post.findById(id);
-    const isAuthor = JSON.stringify(postDoc.author) === JSON.stringify(info.id);
-    if (!isAuthor) {
-      return res.status(400).json('you are not the author');
-    }
-    await postDoc.update({
-      title,
-      summary,
-      content,
-      cover: newPath ? newPath : postDoc.cover,
+    app.put('/post',uploadMiddleware.single('file'), async (req,res) => {
+      let newPath = null;
+      if (req.file) {
+        const {originalname,path} = req.file;
+        const parts = originalname.split('.');
+        const ext = parts[parts.length - 1];
+        newPath = path+'.'+ext;
+        fs.renameSync(path, newPath);
+      }
+    
+      const {token} = req.cookies;
+      jwt.verify(token, secret, {}, async (err,info) => {
+        if (err) throw err;
+        const {id,title,summary,content} = req.body;
+        const postDoc = await Post.findOne({ _id: id, author: info.id }).exec();
+        if (!postDoc) {
+          return res.status(400).json('you are not the author or the post does not exist');
+        }
+        postDoc.title = title;
+        postDoc.summary = summary;
+        postDoc.content = content;
+        if (newPath) {
+          postDoc.cover = newPath;
+        }
+        const updatedPostDoc = await postDoc.save();
+        res.json(updatedPostDoc);
+      });
     });
-
-    res.json(postDoc);
-  });
-
-});
+    
+    
 
 app.get("/", (req, res) => {
   res.send("This server is Connected !");

@@ -7,10 +7,11 @@ const LoginPage = () => {
   const [password,setPassword] = useState('');
   const [redirect,setRedirect] = useState(false);
   const {setUserInfo} = useContext(UserContext);
+  const apiUrl = import.meta.env.VITE_API_URL;
 
   async function login(ev) {
     ev.preventDefault();
-    const response = await fetch('https://julisha.onrender.com/login', {
+    const response = await fetch(`${apiUrl}/login`, {
       method: 'POST',
       body: JSON.stringify({username, password}),
       headers: {'Content-Type':'application/json'},
